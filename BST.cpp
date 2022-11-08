@@ -24,7 +24,7 @@ using namespace std;
         
         if(node==NULL){
             node = CreateNode(data);
-        }if(data <= node->data){
+        }else if(data <= node->data){
             node->left = Insert(node->left,data);
         } else{
             node->right = Insert(node->right,data);
@@ -64,18 +64,26 @@ using namespace std;
 	  Receives a text file containing one integer per line,
 	  and inserts them into a binary search tree one at a time.
 	*/
-	void BST::CreateTree(string file){
-        ifstream input;
+ void BST::CreateTree(string file){
+        ifstream filename;
         int x;
-        input.open(file);
-        if(!input){
+        filename.open(file);
+        if(!filename){
             cout<<"Error! Unable to open file!"<<endl;
+        } else{
+                int count = 0;
+                 while(filename>>x){
+                        count++;
+                        if(count==1){
+                                root = CreateNode(x);
+                        } else  {
+                                Insert(root,x);
+                        }
         }
-        while(input>>x){
-            Insert(root,x);
+        filename.close();
         }
-        input.close();
     }
+
 
 	/*
 	  Returns true if the binary tree/subtree with the provided root is balanced.
