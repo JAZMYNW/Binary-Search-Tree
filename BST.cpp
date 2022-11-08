@@ -7,38 +7,31 @@ using namespace std;
 
 
 
-	BSTNode* BST::CreateNode(int data){
-        BSTnode* newNode = new BSTnode;
+
+        BSTNode* BST::CreateNode(int data){
+        BSTNode* newNode = new BSTNode;
         newNode->data = data;
         newNode->left = NULL;
         newNode->right = NULL;
         return newNode;
     }
+
     
-	/*
-	  Receives as input the root of a binary search tree or subtree, creates
-	  and inserts a new node with the given value 'data'.
-	  Returns pointer to the new node.
-	*/
-	BSTNode* BST::Insert(BSTNode* node, int data){
+	
+        BSTNode* BST::Insert(BSTNode* node, int data){
         
         if(node==NULL){
             node = CreateNode(data);
-        }else if(data <= node->data){
+        } else if(data <= node->data){
             node->left = Insert(node->left,data);
-        } else{
+        } else {
             node->right = Insert(node->right,data);
         }
             return node;
-        
+
     }
 
 
-	/*
-	  Searches for the provided 'data' in the subtrees of 'node'.
-	  if 'node' is the root of a tree, it will search the entire tree
-	  and return true if the key is found, false if not. 
-	*/
 	bool BST::Search(BSTNode* node, int data){
         if(node==NULL){
             return false;
@@ -50,9 +43,7 @@ using namespace std;
             return Search(node->right,data);
     }
 
-	/*
-	  Returns the number of nodes in the tree/subtree with the provided root
-	*/
+	
 	int BST::CountNodes(BSTNode* root){
         if(root == nullptr){
             return 0;
@@ -60,11 +51,8 @@ using namespace std;
         return 1 + CountNodes(root->right) + CountNodes(root->left);
     }
 
-	/*
-	  Receives a text file containing one integer per line,
-	  and inserts them into a binary search tree one at a time.
-	*/
- void BST::CreateTree(string file){
+	
+        void BST::CreateTree(string file){
         ifstream filename;
         int x;
         filename.open(file);
@@ -85,11 +73,8 @@ using namespace std;
     }
 
 
-	/*
-	  Returns true if the binary tree/subtree with the provided root is balanced.
-	  That is, that for any given node in the tree, the difference in heights
-	  of its left and right subtree differ by one at most.
-	*/
+
+
 	int BST::TreeHeight(BSTNode* node){
        int left;
        int right;
@@ -101,19 +86,17 @@ using namespace std;
         return max(left,right)+1;
     }
 
-    bool BST::isBalanced(BSTNode* node){
+     bool BST::isBalanced(BSTNode* node){
        int left = TreeHeight(node->left);
        int right = TreeHeight(node->right);
        if(node == NULL){
        return true;
-       }
-       if(abs(left-right)<=1){
-        if(isBalanced(node->right)&& isBalanced(node->left)){
-            return true;
-        }
-       }
-       return false;     
+       }else{
+        if(abs(left-right)>1)
+        return false;
 
-    }
+        }
+        return true;
+
 
 
