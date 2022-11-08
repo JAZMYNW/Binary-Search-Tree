@@ -51,5 +51,7 @@ public:
 	  of its left and right subtree differ by one at most.
 	*/
 	bool isBalanced(BSTNode* node);
+
+	int TreeHeight(BSTNode* node);
 };
 
