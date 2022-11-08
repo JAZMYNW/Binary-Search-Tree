@@ -93,7 +93,7 @@ using namespace std;
         return max(left,right)+1;
     }
 
-    bool isBalanced(BSTNode* node){
+    bool BST::isBalanced(BSTNode* node){
        int left = TreeHeight(node->left);
        int right = TreeHeight(node->right);
        if(node == NULL){
