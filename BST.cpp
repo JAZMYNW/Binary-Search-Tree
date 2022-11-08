@@ -8,7 +8,7 @@ using namespace std;
 
 
 	BSTNode* BST::CreateNode(int data){
-        BSTnode* newNode = new BSTnode();
+        BSTnode* newNode = new BSTnode;
         newNode->data = data;
         newNode->left = NULL;
         newNode->right = NULL;
@@ -24,7 +24,7 @@ using namespace std;
         
         if(node==NULL){
             node = CreateNode(data);
-        } else if(data <= node->data){
+        }if(data <= node->data){
             node->left = Insert(node->left,data);
         } else{
             node->right = Insert(node->right,data);
